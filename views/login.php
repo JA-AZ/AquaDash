@@ -51,8 +51,8 @@ if (isset($_SESSION['login_error'])) {
 
             <form action="../scripts/login_user.php" method="POST">
                 <div class="form-group">
-                    <label for="Email">Email Address</label>
-                    <input type="email" name="Email" id="Email" class="form-control" placeholder="Enter email" required>
+                <label for="Email">Email Address</label>
+                <input type="email" name="Email" id="Email" class="form-control" placeholder="Enter email" required>
                 </div>
                 <div class="form-group">
                     <label for="Password">Password</label>

@@ -1,9 +1,9 @@
 <?php
 // Database connection
-$host = 'localhost';
-$dbname = 'waterdelivery';
-$username = 'root';
-$password = 'kapoyamagIT';
+$host = 'localhost'; //change this to your actual host
+$dbname = 'waterdelivery'; //change this to your actual database name
+$username = 'root'; //change this to your actual username
+$password = 'kapoyamagIT'; //change this to your actual password
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
@@ -38,15 +38,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
 
-        // Insert user
-        $stmt = $pdo->prepare("INSERT INTO Users (Name, Email, Phone, Address, Password) VALUES (:Name, :Email, :Phone, :Address, :Password)");
-        $stmt->execute([
-            'Name' => $name,
-            'Email' => $email,
-            'Phone' => $phone,
-            'Address' => $address,
-            'Password' => $hashedPassword,
-        ]);
+        // Determine the table based on the username
+        if (strpos($name, '-admin') !== false) {
+            // Insert into Admin table
+            $stmt = $pdo->prepare("INSERT INTO Admin (Username, Password, Name, Email, Phone) VALUES (:Username, :Password, :Name, :Email, :Phone)");
+            $stmt->execute([
+                'Username' => $name,
+                'Password' => $hashedPassword,
+                'Name' => $name,
+                'Email' => $email,
+                'Phone' => $phone,
+            ]);
+        } else {
+            // Insert into Users table
+            $stmt = $pdo->prepare("INSERT INTO Users (Name, Email, Phone, Address, Password) VALUES (:Name, :Email, :Phone, :Address, :Password)");
+            $stmt->execute([
+                'Name' => $name,
+                'Email' => $email,
+                'Phone' => $phone,
+                'Address' => $address,
+                'Password' => $hashedPassword,
+            ]);
+        }
 
         // Redirect after successful registration
         header('Location: ../views/login.php?success=1');
