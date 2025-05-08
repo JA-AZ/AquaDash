@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     // Insert into orders table
-    $stmt = $conn->prepare("INSERT INTO orders (UserID, ProductID, Quantity, TotalAmount, Status) VALUES (?, ?, ?, ?, 'Pending')");
+    $stmt = $conn->prepare("INSERT INTO orders (UserID, ProductID, Quantity, TotalAmount, Status) VALUES (?, ?, ?, ?, 'cart')");
     $stmt->bind_param("iiid", $userID, $productID, $quantity, $totalAmount);
 
     if ($stmt->execute()) {

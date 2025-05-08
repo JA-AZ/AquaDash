@@ -2,7 +2,7 @@
 
 session_start();
 // Check if user is logged in as admin
-if (!isset($_SESSION['admin_id'])) {
+if (!isset($_SESSION['AdminID'])) {
     header("Location: ../views/login.php");
     exit();
 }

@@ -19,7 +19,7 @@ $email = $_POST['Email'];
 $password = $_POST['Password'];
 
 // Check in Admin table
-$stmt = $pdo->prepare("SELECT * FROM Admin WHERE Email = :email");
+$stmt = $pdo->prepare("SELECT * FROM admin WHERE Email = :email");
 $stmt->execute(['email' => $email]);
 $admin = $stmt->fetch(PDO::FETCH_ASSOC);
 
