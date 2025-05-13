@@ -45,7 +45,40 @@ include '../scripts/dashboard-data.php';
                     <p><?php echo $totalOrders; ?></p>
                 </div>
             </div>
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <a href="manage-products.php" class="quick-action-btn"><i class="fas fa-plus"></i> Add New Product</a>
+                <a href="view-orders.php" class="quick-action-btn"><i class="fas fa-shopping-cart"></i> View All Orders</a>
+                <a href="manage-users.php" class="quick-action-btn"><i class="fas fa-users"></i> Manage Users</a>
+            </div>
         </div>
     </div>
+    <style>
+    .quick-actions {
+        display: flex;
+        gap: 24px;
+        margin: 32px 0 0 0;
+        justify-content: flex-start;
+    }
+    .quick-action-btn {
+        background: #3498db;
+        color: #fff;
+        font-size: 1.15rem;
+        font-weight: 600;
+        padding: 18px 32px;
+        border-radius: 8px;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        box-shadow: 0 2px 8px rgba(52, 152, 219, 0.08);
+        transition: background 0.2s, box-shadow 0.2s;
+    }
+    .quick-action-btn:hover {
+        background: #217dbb;
+        box-shadow: 0 4px 16px rgba(52, 152, 219, 0.13);
+        color: #fff;
+    }
+    </style>
 </body>
 </html>
