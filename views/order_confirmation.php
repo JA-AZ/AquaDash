@@ -18,7 +18,7 @@ if (!isset($_GET['order_id']) || empty($_GET['order_id'])) {
 $confirmedOrderID = $_GET['order_id'];
 
 // Database connection
-$conn = new mysqli("localhost", "root", "kapoyamagIT", "waterdelivery");
+$conn = new mysqli("localhost", "root", "", "waterdelivery");
 
 // Check connection
 if ($conn->connect_error) {
