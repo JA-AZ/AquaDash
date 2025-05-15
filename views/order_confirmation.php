@@ -86,148 +86,59 @@ $paymentMethodText = ($orderDetails['PaymentMethod'] === 'cod') ? 'Cash on Deliv
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order Confirmation - Aqua Dash</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./order_confirmation_styles.css">
+    <link rel="stylesheet" href="./checkout_styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
-        .confirmation-header {
-            background-color: #0097c2;
-            color: white;
-            padding: 20px 40px;
-        }
-        
-        .order-success {
-            background-color: #e8f6ff;
-            border-radius: 8px;
-            padding: 30px;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .success-icon {
-            color: #0097c2;
-            font-size: 4rem;
-            margin-bottom: 20px;
-        }
-        
-        .order-info {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .info-box {
-            background-color: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            flex: 1;
-            min-width: 250px;
-        }
-        
-        .info-box h3 {
-            font-size: 1.1rem;
-            color: #0097c2;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-        }
-        
-        .info-box h3 i {
-            margin-right: 10px;
-        }
-        
-        .info-box p {
-            margin-bottom: 5px;
-            color: #555;
-        }
-        
-        .info-label {
-            font-weight: 600;
-            display: inline-block;
-            min-width: 120px;
-        }
-        
-        .order-items {
-            background-color: white;
-            border-radius: 8px;
-            padding: 25px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
-        }
-        
-        .print-btn {
-            background-color: #0097c2;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            padding: 10px 20px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 10px;
-        }
-        
-        .print-btn:hover {
-            background-color: #007ea3;
-        }
-        
-        .print-btn i {
-            margin-right: 8px;
-        }
-        
-        .continue-btn {
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            padding: 10px 20px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .continue-btn:hover {
-            background-color: #3e9142;
-        }
-        
-        .continue-btn i {
-            margin-right: 8px;
-        }
-        
-        .action-buttons {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 40px;
-        }
-        
-        @media (max-width: 768px) {
-            .confirmation-header {
-                padding: 15px;
-            }
-            
-            .info-box {
-                flex: 100%;
-            }
-            
+        @media print {
+            header,
+            .checkout-header,
+            .breadcrumb,
+            .checkout-section,
+            .footer,
             .action-buttons {
-                flex-direction: column;
-                gap: 10px;
-                align-items: center;
+                display: none !important;
             }
-            
-            .print-btn, .continue-btn {
-                width: 100%;
-                margin-right: 0;
+            .container-fluid, .row {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                float: none !important;
+                position: static !important;
+                display: block !important;
             }
+            .order-success, .order-summary {
+                display: block !important;
+                margin: 0 auto 20px auto !important;
+                float: none !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                position: static !important;
+                box-shadow: none !important;
+                
+            }
+            .order-success h2, .order-success p, .order-success h4 {
+                text-align: center !important;
+            }
+            .col-lg-8, .col-lg-4, .col-md-12 {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                float: none !important;
+                position: static !important;
+                display: block !important;
+            }
+            body {
+                background: white !important;
+            }
+        }
+        .order-summary {
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
         }
     </style>
 </head>
@@ -251,7 +162,7 @@ $paymentMethodText = ($orderDetails['PaymentMethod'] === 'cod') ? 'Cash on Deliv
         </nav>
     </header>
 
-    <div class="confirmation-header">
+    <div class="checkout-header">
         <h1>Order Confirmation</h1>
         <div class="breadcrumb">
             <a href="./index.php"> Home </a> › 
@@ -263,81 +174,86 @@ $paymentMethodText = ($orderDetails['PaymentMethod'] === 'cod') ? 'Cash on Deliv
     </div>
 
     <div class="container-fluid">
-        <div class="order-success">
-            <i class="fas fa-check-circle success-icon"></i>
-            <h2>Thank You for Your Order!</h2>
-            <p>Your order has been received and is being processed. You will receive an email confirmation shortly.</p>
-            <h4>Order Number: <strong><?php echo $orderNumber; ?></strong></h4>
-        </div>
-        
-        <div class="order-info">
-            <div class="info-box">
-                <h3><i class="fas fa-truck"></i> Shipping Information</h3>
-                <p><span class="info-label">Recipient:</span> <?php echo htmlspecialchars($orderDetails['RecipientName']); ?></p>
-                <p><span class="info-label">Address:</span> <?php echo htmlspecialchars($orderDetails['StreetAddress']); ?></p>
-                <p><span class="info-label"></span> <?php echo htmlspecialchars($orderDetails['Barangay']); ?>, <?php echo htmlspecialchars($orderDetails['City']); ?></p>
-                <p><span class="info-label"></span> <?php echo htmlspecialchars($orderDetails['Province']); ?>, <?php echo htmlspecialchars($orderDetails['PostalCode']); ?></p>
-                <p><span class="info-label">Phone:</span> <?php echo htmlspecialchars($orderDetails['PhoneNumber']); ?></p>
-            </div>
-            
-            <div class="info-box">
-                <h3><i class="fas fa-info-circle"></i> Order Details</h3>
-                <p><span class="info-label">Order Date:</span> <?php echo date('F j, Y', strtotime($orderDetails['OrderDate'])); ?></p>
-                <p><span class="info-label">Order Status:</span> <span class="badge badge-info">Pending</span></p>
-                <p><span class="info-label">Payment Method:</span> <?php echo $paymentMethodText; ?></p>
-                <p><span class="info-label">Shipping Method:</span> <?php echo $shippingMethodText; ?></p>
-                <p><span class="info-label">Est. Delivery:</span> <?php echo $formattedDeliveryDate; ?></p>
-            </div>
-        </div>
-        
-        <div class="order-items">
-            <h3>Order Summary</h3>
-            
-            <div class="cart-items-list">
-                <?php while ($item = $itemsResult->fetch_assoc()): ?>
-                <div class="cart-item">
-                    <div class="item-image">
-                        <img src="<?php echo $item['ImageURL']; ?>" alt="<?php echo $item['ProductName']; ?>" class="product-img">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="order-success">
+                    <div style="display: flex; align-items: center; justify-content: flex-start; gap: 10px; margin-bottom: 10px;">
+                        <i class="fas fa-check-circle success-icon" style="font-size: 2.2rem; margin-bottom: 0;"></i>
+                        <h2 style="margin: 0; font-size: 2rem; font-weight: 700;">Thank You for Your Order!</h2>
                     </div>
-                    <div class="item-details">
-                        <h3><?php echo htmlspecialchars($item['ProductName']); ?></h3>
-                        <p class="item-price">₱<?php echo number_format($item['PricePerUnit'], 2); ?> each</p>
-                    </div>
-                    <div class="item-quantity">
-                        <span>Qty: <?php echo $item['Quantity']; ?></span>
-                    </div>
-                    <div class="item-subtotal">
-                        ₱<?php echo number_format($item['Subtotal'], 2); ?>
+                    <p>Your order has been received and is being processed.</p>
+                    <h4>Order Number: <strong><?php echo $orderNumber; ?></strong></h4>
+                </div>
+                <div class="checkout-section">
+                    <h2 class="section-title"><i class="fas fa-truck"></i> Shipping Information</h2>
+                    <div class="info-box">
+                        <p><span class="info-label">Recipient:</span> <?php echo htmlspecialchars($orderDetails['RecipientName']); ?></p>
+                        <p><span class="info-label">Address:</span> <?php echo htmlspecialchars($orderDetails['StreetAddress']); ?></p>
+                        <p><span class="info-label"></span> <?php echo htmlspecialchars($orderDetails['Barangay']); ?>, <?php echo htmlspecialchars($orderDetails['City']); ?></p>
+                        <p><span class="info-label"></span> <?php echo htmlspecialchars($orderDetails['Province']); ?>, <?php echo htmlspecialchars($orderDetails['PostalCode']); ?></p>
+                        <p><span class="info-label">Phone:</span> <?php echo htmlspecialchars($orderDetails['PhoneNumber']); ?></p>
                     </div>
                 </div>
-                <?php endwhile; ?>
-            </div>
-            
-            <div class="summary-details">
-                <div class="summary-row">
-                    <span>Subtotal (<?php echo $totalItems; ?> items)</span>
-                    <span class="amount">₱<?php echo number_format($orderDetails['Subtotal'], 2); ?></span>
-                </div>
-                
-                <div class="summary-row">
-                    <span>Shipping & Handling</span>
-                    <span class="amount">₱<?php echo number_format($orderDetails['ShippingFee'], 2); ?></span>
-                </div>
-                
-                <div class="summary-row total">
-                    <span>Total</span>
-                    <span class="amount">₱<?php echo number_format($orderDetails['TotalAmount'], 2); ?></span>
+                <div class="checkout-section">
+                    <h2 class="section-title"><i class="fas fa-info-circle"></i> Order Details</h2>
+                    <div class="info-box">
+                        <p><span class="info-label">Order Date:</span> <?php echo date('F j, Y', strtotime($orderDetails['OrderDate'])); ?></p>
+                        <p><span class="info-label">Order Status:</span> <span class="badge badge-info">Pending</span></p>
+                        <p><span class="info-label">Payment Method:</span> <?php echo $paymentMethodText; ?></p>
+                        <p><span class="info-label">Shipping Method:</span> <?php echo $shippingMethodText; ?></p>
+                        <p><span class="info-label">Est. Delivery:</span> <?php echo $formattedDeliveryDate; ?></p>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="action-buttons">
-            <button class="print-btn" id="print-order">
-                <i class="fas fa-print"></i> Print Order
-            </button>
-            <a href="./shop.php" class="continue-btn">
-                <i class="fas fa-shopping-cart"></i> Continue Shopping
-            </a>
+            <div class="col-lg-4 col-md-12">
+                <div class="order-summary">
+                    <h2>Order Summary</h2>
+                    <div class="cart-items-list">
+                        <?php while ($item = $itemsResult->fetch_assoc()): ?>
+                        <div class="cart-item">
+                            <div class="item-image">
+                                <img src="<?php echo $item['ImageURL']; ?>" alt="<?php echo $item['ProductName']; ?>" class="product-img">
+                            </div>
+                            <div class="item-details">
+                                <h3><?php echo htmlspecialchars($item['ProductName']); ?></h3>
+                                <p class="item-price">₱<?php echo number_format($item['PricePerUnit'], 2); ?> each</p>
+                            </div>
+                            <div class="item-quantity">
+                                <span>Qty: <?php echo $item['Quantity']; ?></span>
+                            </div>
+                            <div class="item-subtotal">
+                                ₱<?php echo number_format($item['Subtotal'], 2); ?>
+                            </div>
+                        </div>
+                        <?php endwhile; ?>
+                    </div>
+                    <div class="summary-details">
+                        <div class="summary-row">
+                            <span>Subtotal (<?php echo $totalItems; ?> items)</span>
+                            <span class="amount">₱<?php echo number_format($orderDetails['Subtotal'], 2); ?></span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Shipping & Handling</span>
+                            <span class="amount">₱<?php echo number_format($orderDetails['ShippingFee'], 2); ?></span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total</span>
+                            <span class="amount">₱<?php echo number_format($orderDetails['TotalAmount'], 2); ?></span>
+                        </div>
+                        <div class="delivery-estimate">
+                            Delivery: Estimated <?php echo $shippingMethodText === 'Express Delivery (Next Day)' ? 'next business day' : '2-3 business days'; ?>
+                        </div>
+                    </div>
+                    <div class="action-buttons" style="gap: 10px;">
+                        <button class="print-btn confirm-order-btn" id="print-order" style="width: auto; min-width: 160px;">
+                            <i class="fas fa-print"></i> Print Order
+                        </button>
+                        <a href="./shop.php" class="continue-btn confirm-order-btn" style="width: auto; min-width: 200px; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-shopping-cart"></i> Continue Shopping
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
