@@ -16,7 +16,7 @@ if (!isset($_SESSION['UserID'])) {
 $userID = $_SESSION['UserID'];
 
 // Database connection
-$conn = new mysqli("localhost", "root", "kapoyamagIT", "waterdelivery");
+$conn = new mysqli("localhost", "root", "", "waterdelivery");
 
 // Check connection
 if ($conn->connect_error) {

@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $host = 'localhost';
     $dbname = 'waterdelivery';
     $username = 'root';
-    $password = 'kapoyamagIT';
+    $password = '';
 
     try {
         $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);

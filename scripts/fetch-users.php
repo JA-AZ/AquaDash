@@ -11,7 +11,7 @@ if (!isset($_SESSION['AdminID'])) { // Updated to match the session variable set
 $host = 'localhost';
 $dbname = 'waterdelivery';
 $username = 'root';
-$password = 'kapoyamagIT'; // replace with your actual password
+$password = ''; // replace with your actual password
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);

@@ -6,7 +6,7 @@ if (!isset($_SESSION['UserID'])) {
     exit;
 }
 $userID = $_SESSION['UserID'];
-$conn = new mysqli('localhost', 'root', 'kapoyamagIT', 'waterdelivery');
+$conn = new mysqli('localhost', 'root', '', 'waterdelivery');
 if ($conn->connect_error) {
     echo json_encode(['success' => false, 'error' => 'DB connection failed']);
     exit;
