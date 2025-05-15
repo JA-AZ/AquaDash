@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $productName = trim($_POST['ProductName'] ?? '');
     $pricePerUnit = floatval($_POST['PricePerUnit'] ?? 0);
     $stockQuantity = intval($_POST['StockQuantity'] ?? 0);
-    $imageURL = '';
+    $imageURL = '';     
 
     // Handle file upload
     if (isset($_FILES['ImageFile']) && $_FILES['ImageFile']['error'] === UPLOAD_ERR_OK) {

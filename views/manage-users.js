@@ -6,10 +6,16 @@ const closeButtons = document.querySelectorAll(".close");
 document.querySelectorAll(".edit-btn").forEach((button) => {
     button.addEventListener("click", () => {
         const userID = button.getAttribute("data-id");
-        // Fetch user data and populate the form
+        const name = button.getAttribute("data-name");
+        const email = button.getAttribute("data-email");
+        const phone = button.getAttribute("data-phone");
+        const address = button.getAttribute("data-address");
         document.getElementById("editUserID").value = userID;
-        // Example: Fetch user details via AJAX (not implemented here)
-        editModal.style.display = "block";
+        document.getElementById("editName").value = name;
+        document.getElementById("editEmail").value = email;
+        document.getElementById("editPhone").value = phone;
+        document.getElementById("editAddress").value = address;
+        editModal.classList.add("show");
     });
 });
 
@@ -18,15 +24,15 @@ document.querySelectorAll(".delete-btn").forEach((button) => {
     button.addEventListener("click", () => {
         const userID = button.getAttribute("data-id");
         document.getElementById("confirmDelete").setAttribute("data-id", userID);
-        deleteModal.style.display = "block";
+        deleteModal.classList.add("show");
     });
 });
 
 // Close Modals
 closeButtons.forEach((button) => {
     button.addEventListener("click", () => {
-        editModal.style.display = "none";
-        deleteModal.style.display = "none";
+        editModal.classList.remove("show");
+        deleteModal.classList.remove("show");
     });
 });
 
@@ -34,5 +40,15 @@ closeButtons.forEach((button) => {
 document.getElementById("confirmDelete").addEventListener("click", () => {
     const userID = document.getElementById("confirmDelete").getAttribute("data-id");
     // Example: Send delete request via AJAX (not implemented here)
-    deleteModal.style.display = "none";
+    deleteModal.classList.remove("show");
+});
+
+// Allow closing modal by clicking outside modal-content
+window.addEventListener("click", function(event) {
+    if (event.target === editModal) {
+        editModal.classList.remove("show");
+    }
+    if (event.target === deleteModal) {
+        deleteModal.classList.remove("show");
+    }
 });
