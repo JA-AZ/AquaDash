@@ -11,7 +11,7 @@ if (isset($_POST['order_id']) && isset($_POST['quantity'])) {
     $quantity = intval($_POST['quantity']);
 
     // Database connection
-    $conn = new mysqli("localhost", "root", "", "waterdelivery");
+    $conn = new mysqli("localhost", "root", "kapoyamagIT", "waterdelivery");
 
     if ($conn->connect_error) {
         echo 'error';

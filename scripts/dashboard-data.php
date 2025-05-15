@@ -12,7 +12,7 @@ if (!isset($_SESSION['AdminID'])) {
 $host = 'localhost'; // Replace with your database host
 $dbname = 'waterdelivery'; // Replace with your database name
 $username = 'root'; // Replace with your database username
-$password = ''; // Replace with your database password
+$password = 'kapoyamagIT'; // Replace with your database password
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);

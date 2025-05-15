@@ -5,7 +5,7 @@ session_start();
 $host = 'localhost';
 $dbname = 'waterdelivery';
 $username = 'root';
-$password = ''; //replace with your actual password
+$password = 'kapoyamagIT'; //replace with your actual password
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);

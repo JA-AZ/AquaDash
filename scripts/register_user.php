@@ -3,7 +3,7 @@
 $host = 'localhost'; //change this to your actual host
 $dbname = 'waterdelivery'; //change this to your actual database name
 $username = 'root'; //change this to your actual username
-$password = ''; //change this to your actual password
+$password = 'kapoyamagIT'; //change this to your actual password
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);

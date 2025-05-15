@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $totalAmount = floatval($_POST['totalAmount']);
 
     // Database connection
-    $conn = new mysqli("localhost", "root", "", "waterdelivery");
+    $conn = new mysqli("localhost", "root", "kapoyamagIT", "waterdelivery");
 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);

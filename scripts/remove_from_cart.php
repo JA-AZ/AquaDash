@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $orderID = intval($_POST['order_id']);
 
     // Connect to database
-    $conn = new mysqli("localhost", "root", "", "waterdelivery");
+    $conn = new mysqli("localhost", "root", "kapoyamagIT", "waterdelivery");
 
     if ($conn->connect_error) {
         http_response_code(500); // Internal Server Error

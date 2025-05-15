@@ -19,7 +19,7 @@ if ($imgDir && is_dir($imgDir)) {
 $host = 'localhost';
 $dbname = 'waterdelivery';
 $username = 'root';
-$password = '';
+$password = 'kapoyamagIT';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);

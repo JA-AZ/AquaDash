@@ -36,6 +36,7 @@ include '../scripts/fetch-users.php';
                 <table>
                     <thead>
                         <tr>
+                            <th>#</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
@@ -44,14 +45,21 @@ include '../scripts/fetch-users.php';
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($users as $user): ?>
+                        <?php $rowNum = 1; foreach ($users as $user): ?>
                         <tr>
+                            <td><?php echo $rowNum++; ?></td>
                             <td><?php echo htmlspecialchars($user['Name']); ?></td>
                             <td><?php echo htmlspecialchars($user['Email']); ?></td>
                             <td><?php echo htmlspecialchars($user['Phone']); ?></td>
                             <td><?php echo htmlspecialchars($user['Address']); ?></td>
                             <td>
-                                <button class="edit-btn" data-id="<?php echo $user['UserID']; ?>">Edit</button>
+                                <button class="edit-btn" 
+                                    data-id="<?php echo $user['UserID']; ?>"
+                                    data-name="<?php echo htmlspecialchars($user['Name']); ?>"
+                                    data-email="<?php echo htmlspecialchars($user['Email']); ?>"
+                                    data-phone="<?php echo htmlspecialchars($user['Phone']); ?>"
+                                    data-address="<?php echo htmlspecialchars($user['Address']); ?>"
+                                >Edit</button>
                                 <button class="delete-btn" data-id="<?php echo $user['UserID']; ?>">Delete</button>
                             </td>
                         </tr>
@@ -66,16 +74,18 @@ include '../scripts/fetch-users.php';
     <div id="editModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>Edit User</h2>
-            <form id="editForm">
+            <h2><i class="fas fa-user-edit"></i> Edit User</h2>
+            <form id="editForm" autocomplete="off">
                 <input type="hidden" name="UserID" id="editUserID">
                 <label for="editName">Name:</label>
                 <input type="text" name="Name" id="editName" required>
+                <label for="editEmail">Email:</label>
+                <input type="email" name="Email" id="editEmail" required>
                 <label for="editPhone">Phone:</label>
                 <input type="text" name="Phone" id="editPhone" required>
                 <label for="editAddress">Address:</label>
                 <input type="text" name="Address" id="editAddress" required>
-                <button type="submit">Save Changes</button>
+                <button type="submit" class="edit-save-btn"><i class="fas fa-save"></i> Save Changes</button>
             </form>
         </div>
     </div>
@@ -92,5 +102,20 @@ include '../scripts/fetch-users.php';
     </div>
 
     <script src="manage-users.js"></script> <!-- Link to JavaScript -->
+    <script>
+    $(document).ready(function() {
+        $('#editForm').on('submit', function(e) {
+            e.preventDefault();
+            var formData = $(this).serialize();
+            $.post('../scripts/edit-user.php', formData, function(resp) {
+                if (resp.success) {
+                    location.reload();
+                } else {
+                    alert(resp.error || 'Failed to update user.');
+                }
+            }, 'json');
+        });
+    });
+    </script>
 </body>
 </html>
